@@ -24,13 +24,10 @@
     <Compile Include="DataManager.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DrawingManager.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Main.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MorphingManager.py">
+    <Compile Include="AugmentationManager.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
