@@ -8,5 +8,20 @@ Run Main.py<br>
 Enter the amount of augmented images you want<br>
 Let it augment many more images.
 
-
-
+## Images
+<p align="left">
+  <img src="./ImageAugmentation/Input/COW.jpg"
+    style="width: 55%;" />
+</p>
+<p align="left">
+  <img src="./ImageAugmentation/Output/(0)COW.png"
+    style="width: 55%;" />
+</p>
+<p align="left">
+  <img src="./ImageAugmentation/Output/(1)COW.png"
+    style="width: 55%;" />
+</p>
+<p align="left">
+  <img src="./ImageAugmentation/Output/(2)COW.png"
+    style="width: 55%;" />
+</p>
