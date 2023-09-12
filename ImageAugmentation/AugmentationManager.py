@@ -10,9 +10,13 @@ def MutateFile(file, amount, index):
     width, height = image.size
     widthmod = random.randint(1, 8)
     heightmod = random.randint(1, 8)
-    rects = random.randint(1, 6)
+    rects = random.randint(1, 9)
     
     augmentedimage = image.copy()
+    
+    # Rotate the image by a random angle (0-360 degrees)
+    angle = random.randint(0, 360)
+    augmentedimage = augmentedimage.rotate(angle, resample=Image.BILINEAR, expand=True)
     
     for rectangles in range(rects):
         x0 = random.randint(0, int(width/1.5))
@@ -21,8 +25,8 @@ def MutateFile(file, amount, index):
         y1 = random.randint(y0, height)
         opacity = random.randint(30, 145)
 
-        # Create a new transparent RGBA image
-        rect = Image.new("RGBA", image.size, (0, 0, 0, 0))
+        # Create a new transparent RGBA image with the same dimensions as augmentedimage
+        rect = Image.new("RGBA", augmentedimage.size, (0, 0, 0, 0))
         draw = ImageDraw.Draw(rect)
         colour = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255), opacity) 
 
@@ -32,6 +36,11 @@ def MutateFile(file, amount, index):
         augmentedimage = Image.alpha_composite(augmentedimage, rect)
 
     augmentedimage.save("output/" + "(" + str(index) + ")" + file.split('.')[0] + ".png")
+
+    image = cv2.imread("output/" + "(" + str(index) + ")" + file.split('.')[0] + ".png")
+    adjustedimage = np.clip(image * random.uniform(0.5, 1.5), 0, 255).astype(np.uint8)
+    cv2.imwrite("output/" + "(" + str(index) + ")" + file.split('.')[0] + ".png", adjustedimage)
+
     index += 1
     MutateFile(file, amount, index)
 
