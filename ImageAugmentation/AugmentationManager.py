@@ -2,7 +2,7 @@ import random
 import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
-
+import threading
 def MutateFile(file, amount, index):
     if amount == index:
         return
@@ -47,5 +47,11 @@ def MutateFile(file, amount, index):
 
 def MutateImages(files):
     amount = int(input("Amount Of Images You Want To Augment: "))
+    threads = []
     for file in files:
-        MutateFile(file,amount,0)
+        thread = threading.Thread(target=MutateFile, args=(file, amount, 0))
+        thread.start()
+        threads.append(thread)
+    
+    for thread in threads:
+        thread.join()
